@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Guess The Number
+    </h1>
+    <input id="num">
+    <button onclick="a()">Check</button>
+    <p id="y">Your Right/Wrong</p>
+    <p id="s">Score=10</p>
+    <script>
+        var num=document.getElementById('num')
+        var b=document.getElementById('b')
+        var y=document.getElementById('y')
+        var sa=document.getElementById('s')
+        var total=Math.floor(Math.random()*5)+1
+        var s=10
+        function a()
+        {
+            var e=Number(num.value)
+            if (e>5)
+        {
+            alert('Enter number greater than 5');
+        }
+        else if(total===e)
+        {
+            y.textContent='right'
+            alert('You Won');
+            s=s+1
+            sa.textContent='Score = ' + s;
+        }
+        else{
+              y.textContent='Wrong' 
+            s=s-1
+                        sa.textContent='Score = ' + s;
+
+        }
+
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guess The Number</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #9face6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #222;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+
+    input {
+      padding: 12px;
+      font-size: 18px;
+      width: 220px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    p {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    #r {
+      font-weight: bold;
+      color: darkred;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+    }
+
+    #s {
+      font-weight: bold;
+      color: darkgreen;
+    }
+
+    .game-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <h1>🎯 Guess The Number</h1>
+    <input id="num1" type="number" placeholder="Enter number 1 - 10" />
+    <br>
+    <button onclick="a()">Check</button>
+    <p id="r">Your guess result will appear here.</p>
+    <p id="s">Score = 10</p>
+  </div>
+
+  <script>
+    var num = document.getElementById('num1');
+    var r = document.getElementById('r');
+    var b = document.getElementById('s');
+    var random = Math.floor(Math.random() * 10) + 1;
+    var s = 10;
+
+    function a() {
+      var e = Number(num.value);
+      if (e > 10 || e < 1) {
+        alert('❗ Enter a number between 1 and 10');
+      } else if (e > random) {
+        r.textContent = '📉 Too High! Try a smaller number.';
+        r.style.color = '#b30000';
+        s--;
+      } else if (e < random) {
+        r.textContent = '📈 Too Low! Try a bigger number.';
+        r.style.color = '#b30000';
+        s--;
+      } else {
+        r.textContent = '🎉 Correct! You guessed it!';
+        r.style.color = 'green';
+        alert('🎉 YOU WON!');
+        s++;
+        // Generate new number for replay
+        random = Math.floor(Math.random() * 10) + 1;
+      }
+      b.textContent = 'Score = ' + s;
+
+      // Optional: Reset input
+      num.value = '';
+      num.focus();
+    }
+  </script>
+</body>
+</html>
